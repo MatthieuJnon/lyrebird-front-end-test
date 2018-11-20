@@ -1,0 +1,25 @@
+@import "animations";
+
+.loadingBar {
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-name: progressBarLoading;
+  animation-name: progressBarLoading;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  background-color: #dbdbdb;
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: 150% 150%;
+  background-image: linear-gradient(to right, rgb(80, 156, 235) 30%, #dbdbdb 30%);
+  -webkit-appearance: none;
+  border: none;
+  border-radius: 290486px;
+  display: block;
+  height: 1rem;
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+}
