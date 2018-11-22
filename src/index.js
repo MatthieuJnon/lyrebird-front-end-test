@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import dotenv from "dotenv";
 import './index.css';
 import Wrap from "./Wrap"
 import * as serviceWorker from './serviceWorker';
+
+dotenv.config();
 
 ReactDOM.render(<Wrap />, document.getElementById('root'));
 

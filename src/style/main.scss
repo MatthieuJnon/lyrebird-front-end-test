@@ -13,7 +13,11 @@
   background-position: top left;
   background-repeat: no-repeat;
   background-size: 150% 150%;
-  background-image: linear-gradient(to right, rgb(80, 156, 235) 30%, #dbdbdb 30%);
+  background-image: linear-gradient(
+    to right,
+    rgb(80, 156, 235) 30%,
+    #dbdbdb 30%
+  );
   -webkit-appearance: none;
   border: none;
   border-radius: 290486px;
@@ -22,4 +26,18 @@
   overflow: hidden;
   padding: 0;
   width: 100%;
+}
+
+.link {
+  cursor: pointer;
+  color: #387cff;
+}
+
+.link:hover {
+  color: #518eff;
+}
+
+.top-radius {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }

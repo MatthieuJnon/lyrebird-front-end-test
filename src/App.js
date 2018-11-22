@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { startLogin } from "./actions"
 
 import Container from "react-bulma-components/lib/components/container";
 import Level from "react-bulma-components/lib/components/level";
 import Box from "react-bulma-components/lib/components/box";
+import style from "style";
+
+import Connection from "./Connection";
 import LoadingBar from "./components/LoadingBar";
-import style from "./style/styles";
-
-
 
 class App extends Component {
   render() {
@@ -19,7 +18,8 @@ class App extends Component {
             <Level.Item>Lyrebird Custom Voice</Level.Item>
           </Level>
         </Box>
-        <LoadingBar />
+        {!this.props.logged && <Connection />}
+        {this.props.loginPending && <LoadingBar />}
       </Container>
     );
   }
@@ -27,13 +27,9 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    logingStatus: state.user.status
+    logged: state.connection.logged,
+    loginPending: state.connection.loginPending
   };
 };
 
-const mapDispatchToProps = { startLogin };
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps)(App);

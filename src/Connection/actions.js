@@ -1,4 +1,4 @@
-export const startLogin = (status = 0, token = 0, error = "") => {
+export const Login = (status = "", token = 0, error = "") => {
   return {
     type: "LOGIN_PROCESS_STARTED",
     status: status,
