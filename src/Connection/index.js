@@ -1,11 +1,10 @@
 import React from "react";
 import { Login } from "./actions";
 import { connect } from "react-redux";
-import env from "utils/env"
+import env from "utils/env";
 
 import Heading from "react-bulma-components/lib/components/heading";
 import Modal from "react-bulma-components/lib/components/modal";
-
 
 class Connection extends React.Component {
   constructor(props) {
@@ -17,33 +16,29 @@ class Connection extends React.Component {
   checkPopup() {
     const check = setInterval(() => {
       const { popup } = this;
-      let url;
 
-      try {
-        url = popup.location.href;
-      } catch (error) {
-        url = "";
-      }
-
-      if (!popup || popup.closed || popup.closed === undefined) {
+      if ((!popup || popup.closed || popup.closed === undefined) && !this.props.logged) {
         clearInterval(check);
         this.props.Login("RESET");
-      } else if (url.includes("access")) {
-        clearInterval(check);
+      }
+    }, 100);
 
-        popup.close();
+    window.addEventListener("message", event => {
+      if (event.data.origin === "lyrebird") {
+        this.popup.close();
 
-        console.log(url);
+        let url = event.data.url;
 
         let token = url.substring(
           url.indexOf("#access_token=") + 14,
           url.indexOf("&token_type")
         );
 
-        console.log(token);
         this.props.Login("SUCCESS", token);
+      } else {
+        return;
       }
-    }, 100);
+    });
   }
 
   logIn() {
@@ -53,7 +48,6 @@ class Connection extends React.Component {
     const top = window.innerHeight / 2 - height / 2;
 
     const url = "https://myvoice.lyrebird.ai/authorize";
-    console.log(env)
     const clientId = env.clientId;
     const redirect = env.redirectUrl;
     const state = Math.floor(Math.random() * Math.floor(10000000));
@@ -91,7 +85,8 @@ class Connection extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    error: state.connection.error
+    error: state.connection.error,
+    logged: state.connection.logged
   };
 };
 
