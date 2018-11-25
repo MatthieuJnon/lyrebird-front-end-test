@@ -1,4 +1,4 @@
-import { LOGIN_PROCESS_STARTED } from "./actions"
+import { LOGIN_PROCESS } from "./actions";
 
 const initialLoginState = {
   logged: false,
@@ -9,7 +9,7 @@ const initialLoginState = {
 
 function user(state = initialLoginState, action) {
   switch (action.type) {
-    case LOGIN_PROCESS_STARTED:
+    case LOGIN_PROCESS:
       switch (action.status) {
         case "SUCCESS":
           return Object.assign({}, state, {
@@ -26,11 +26,11 @@ function user(state = initialLoginState, action) {
         case "RESET":
           return Object.assign({}, state, {
             loginPending: false
-          })
+          });
         default:
           return Object.assign({}, state, {
             loginPending: true
-          })
+          });
       }
     default:
       return state;

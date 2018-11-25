@@ -1,26 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import Container from "react-bulma-components/lib/components/container";
-import Level from "react-bulma-components/lib/components/level";
-import Box from "react-bulma-components/lib/components/box";
 import style from "style";
 
 import Connection from "./Connection";
 import LoadingBar from "./components/LoadingBar";
+import UserSpace from "./UserSpace";
 
 class App extends Component {
   render() {
     return (
-      <Container breakpoint="desktop" style={style.paddingTop}>
-        <Box>
-          <Level renderAs="nav">
-            <Level.Item>Lyrebird Custom Voice</Level.Item>
-          </Level>
-        </Box>
+      <div className="container is-desktop" style={style.paddingContainer}>
+        <div className="box">
+          <div className="level">
+            <div className="level-item is-size-3">Lyrebird Custom Voice</div>
+          </div>
+        </div>
         {!this.props.logged && <Connection />}
         {this.props.loginPending && <LoadingBar />}
-      </Container>
+        {this.props.logged && <UserSpace />}
+      </div>
     );
   }
 }

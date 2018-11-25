@@ -1,10 +1,10 @@
 export const Login = (status = "", token = 0, error = "") => {
   return {
-    type: "LOGIN_PROCESS_STARTED",
+    type: "LOGIN_PROCESS",
     status: status,
     accessToken: token,
     error: error
   }
 }
 
-export const LOGIN_PROCESS_STARTED = 'LOGIN_PROCESS_STARTED';
+export const LOGIN_PROCESS = 'LOGIN_PROCESS';

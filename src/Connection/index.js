@@ -3,9 +3,6 @@ import { Login } from "./actions";
 import { connect } from "react-redux";
 import env from "utils/env";
 
-import Heading from "react-bulma-components/lib/components/heading";
-import Modal from "react-bulma-components/lib/components/modal";
-
 class Connection extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +14,10 @@ class Connection extends React.Component {
     const check = setInterval(() => {
       const { popup } = this;
 
-      if ((!popup || popup.closed || popup.closed === undefined) && !this.props.logged) {
+      if (
+        (!popup || popup.closed || popup.closed === undefined) &&
+        !this.props.logged
+      ) {
         clearInterval(check);
         this.props.Login("RESET");
       }
@@ -67,18 +67,19 @@ class Connection extends React.Component {
 
   render() {
     return (
-      <Modal show={true} onClose>
-        <Modal.Card>
-          <Modal.Card.Body className="top-radius">
-            <Heading>Lyrebird custom voice</Heading>
-          </Modal.Card.Body>
-          <Modal.Card.Foot>
-            <p href="" className="link" onClick={this._logIn}>
-              Log in to see your voices
-            </p>
-          </Modal.Card.Foot>
-        </Modal.Card>
-      </Modal>
+      <div className="modal is-active">
+        <div className="modal-background" role="presentation" />
+        <div className="modal-card">
+            <div className="modal-card-head">
+              <div className="modal-card-title is-size-3">Lyrebird custom voice</div>
+            </div>
+            <div className="modal-card-foot">
+              <p href="" className="link" onClick={this._logIn}>
+                Log in to see your utterances
+              </p>
+            </div>
+          </div>
+      </div>
     );
   }
 }

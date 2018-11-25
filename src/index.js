@@ -1,13 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import dotenv from "dotenv";
-import './index.css';
-import Wrap from "./Wrap"
-import * as serviceWorker from './serviceWorker';
+import "./index.css";
+import Wrap from "./Wrap";
+import * as serviceWorker from "./serviceWorker";
 
 dotenv.config();
 
-ReactDOM.render(<Wrap />, document.getElementById('root'));
+ReactDOM.render(<Wrap />, document.getElementById("root"));
+
+if (module.hot) {
+  module.hot.accept("./Wrap", () => {
+    const NextApp = require("./Wrap").default;
+    ReactDOM.render(<NextApp />, document.getElementById("root"));
+  });
+}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
