@@ -3,10 +3,6 @@ import React from "react";
 
 import { postUtterance } from "./actions";
 
-const loadingStyle = {
-  color: "hsl(0,0%,86%)"
-}
-
 class NewUtterance extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +16,7 @@ class NewUtterance extends React.Component {
 
   createUtterance() {
     this.props.postUtterance(this.props.token, this.state.text);
+    this.setState({ text: ""});
   }
 
   handleChange(event) {
@@ -31,18 +28,12 @@ class NewUtterance extends React.Component {
       <>
         <div className="field">
           <label className="label title">Your new utterance</label>
-          <div
-            className={
-              "control " +
-              (this.props.working ? "is-loading has-text-grey-lighter" : "")
-            }
-          >
+          <div className="control">
             <textarea
               className="textarea"
               placeholder="Hello World"
               value={this.state.text}
               onChange={this.handleChange}
-              style={this.props.working ? loadingStyle : {} }
             />
           </div>
         </div>

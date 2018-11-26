@@ -10,8 +10,12 @@ const textStyle = {
 
 const buttonStyle = {
   width: "45px",
-  margin: "0 2px"
+  margin: "1px 2px"
 };
+
+const textColumnStyle = {
+  maxWidth: "500px"
+}
 
 class Utterance extends React.PureComponent {
   constructor(props) {
@@ -58,7 +62,7 @@ class Utterance extends React.PureComponent {
   render() {
     return (
       <tr>
-        <td>
+        <td style={textColumnStyle}>
           <div style={textStyle}>{this.props.text}</div>
         </td>
         <td>{this.props.date.substring(0, 10)}</td>
