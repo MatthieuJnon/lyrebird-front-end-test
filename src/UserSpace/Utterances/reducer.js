@@ -2,13 +2,15 @@ import {
   ADD_UTTERANCE,
   FETCHING_UTTERANCES,
   DONE_FETCHING_UTTERANCES,
-  ERROR_FETCHING_UTTERANCES
+  ERROR_FETCHING_UTTERANCES,
+  UPDATE_SEARCH
 } from "./actions";
 
 const initialUtterancesState = {
   utterances: [],
   fetching: false,
-  error: ""
+  error: "",
+  search: ""
 };
 
 function utterances(state = initialUtterancesState, action) {
@@ -30,6 +32,11 @@ function utterances(state = initialUtterancesState, action) {
         utterances: [],
         fetching: true
       });
+
+    case UPDATE_SEARCH:
+      return Object.assign({}, state, {
+        search: action.search
+      })
 
     case DONE_FETCHING_UTTERANCES:
       return Object.assign({}, state, {

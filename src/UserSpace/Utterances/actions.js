@@ -26,10 +26,18 @@ export const errorFetchUtterances = error => {
   };
 };
 
+export const updateSearchField = search => {
+  return {
+    type: "UPDATE_SEARCH",
+    search: search
+  }
+}
+
+export const ERROR_FETCHING_UTTERANCES = "ERROR_FETCHING_UTTERANCES";
+export const DONE_FETCHING_UTTERANCES = "DONE_FETCHING_UTTERANCES";
 export const FETCHING_UTTERANCES = "FETCHING_UTTERANCES";
 export const ADD_UTTERANCE = "ADD_UTTERANCE";
-export const DONE_FETCHING_UTTERANCES = "DONE_FETCHING_UTTERANCES";
-export const ERROR_FETCHING_UTTERANCES = "ERROR_FETCHING_UTTERANCES";
+export const UPDATE_SEARCH = "UPDATE_SEARCH"
 
 export const fetchUtterances = token => {
   return dispatch => {
