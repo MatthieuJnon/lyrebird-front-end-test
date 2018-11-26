@@ -1,8 +1,9 @@
-import React from "react";
 import { connect } from "react-redux";
+import React from "react";
+
+import LoadingBar from "components/LoadingBar"
 import { fetchUtterances } from "./actions";
 import Utterance from "./Utterance";
-import LoadingBar from "components/LoadingBar"
 
 class Uterrances extends React.Component {
   constructor(props) {

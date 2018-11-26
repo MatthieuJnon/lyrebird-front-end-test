@@ -65,15 +65,17 @@ class Utterance extends React.PureComponent {
         <td>
           <a
             href={this.props.link}
+            target="_blank"
+            rel="noopener noreferrer"
             download
-            className="button is-info"
+            className="button is-link"
             style={buttonStyle}
           >
             <FontAwesomeIcon icon={faDownload} />
           </a>
           {!this.state.playing ? (
             <button
-              className="button is-info"
+              className="button is-link"
               style={buttonStyle}
               onClick={this._playSound}
             >
@@ -81,7 +83,7 @@ class Utterance extends React.PureComponent {
             </button>
           ) : (
             <button
-              className="is-info button"
+              className="is-link button"
               style={buttonStyle}
               onClick={this._pauseSound}
             >

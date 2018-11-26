@@ -153,7 +153,8 @@ module.exports = {
       '_variables.sass': path.resolve(__dirname, '../src/style/_variables.sass'),
       'utils': path.resolve(__dirname, '../src/utils'),
       'style': path.resolve(__dirname, '../src/style'),
-      'components': path.resolve(__dirname, '../src/components')
+      'components': path.resolve(__dirname, '../src/components'),
+      'src': path.resolve(__dirname, '../src')
     },
     plugins: [
       // Adds support for installing with Plug'n'Play, leading to faster installs and adding
