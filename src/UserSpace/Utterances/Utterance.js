@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload, faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 
 const textStyle = {
   maxHeight: "100px",
@@ -11,18 +11,48 @@ const textStyle = {
 const buttonStyle = {
   width: "45px",
   margin: "0 2px"
-}
+};
 
 class Utterance extends React.PureComponent {
-
   constructor(props) {
     super(props);
     this._playSound = this.playSound.bind(this);
+    this._pauseSound = this.pauseSound.bind(this);
+    this.state = {
+      playing: false,
+      paused: false
+    };
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    this.audioCtx = new AudioContext();
   }
 
-  playSound(){
-    let sound = new Audio(this.props.link);
-    sound.play();
+  playSound() {
+    if (this.state.paused === false) {
+      let sound = new Audio(this.props.link);
+      this.sound = sound;
+      sound.play();
+      sound.addEventListener('ended', () => {
+        this.setState({
+          playing: false,
+          paused: false
+        })
+      }, false);
+    } else {
+      this.audioCtx.resume();
+      this.sound.play();
+    }
+    this.setState({
+      playing: true,
+      paused: false
+    });
+  }
+
+  pauseSound() {
+    this.sound.pause();
+    this.setState({
+      playing: false,
+      paused: true
+    });
   }
 
   render() {
@@ -33,12 +63,31 @@ class Utterance extends React.PureComponent {
         </td>
         <td>{this.props.date.substring(0, 10)}</td>
         <td>
-          <a href={this.props.link} download className="button is-info" style={buttonStyle}>
+          <a
+            href={this.props.link}
+            download
+            className="button is-info"
+            style={buttonStyle}
+          >
             <FontAwesomeIcon icon={faDownload} />
           </a>
-          <button className="button is-info" style={buttonStyle} onClick={this._playSound}>
-            <FontAwesomeIcon icon={faPlay} />
-          </button>
+          {!this.state.playing ? (
+            <button
+              className="button is-info"
+              style={buttonStyle}
+              onClick={this._playSound}
+            >
+              <FontAwesomeIcon icon={faPlay} />
+            </button>
+          ) : (
+            <button
+              className="is-info button"
+              style={buttonStyle}
+              onClick={this._pauseSound}
+            >
+              <FontAwesomeIcon icon={faPause} />
+            </button>
+          )}
         </td>
       </tr>
     );
