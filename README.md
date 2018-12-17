@@ -1,6 +1,6 @@
 # Lyrebird Front End Test
 
-An assessment for lyrebird, a small react app that presents an user with voices choice and uses the lyrebird api to synthesize a given text.
+An assessment for lyrebird, a small react/redux app that presents an user with a prompt to generate speech from text using his own voice.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -13,6 +13,8 @@ or
 ### `npm install`
 
 Then put your application client id in the .env file in the root of the project. For the redirect url, you should redirect to the app. Use either `localhost:3000` or `127.0.0.1:3000`
+
+To use the app, **you should have an account on [Lyrebird](https://www.lyrebird.ai)'s website, and you should have already trained your voice on [Lyrebird](https://www.lyrebird.ai).**
 
 ## Run instructions
 
@@ -33,5 +35,3 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
